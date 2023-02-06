@@ -1,4 +1,5 @@
-# openvpn-route-domains
+# openvpn-route-only-these-domains
+
 OpenVPN server-side only split-tunnel VPN connections. No client configuration required, all routes pushed down from server. 
 
 Shell script that reads in a list of domains to add to OpenVPN's Configuration > VPN Settings > Routing > Private Subnets
