@@ -11,10 +11,13 @@ You want to split your Internet traffic between your local gateway and use your 
 OpenVPN Setup:
 
 Configuration > VPN Settings > Routing > Yes, Use NAT
+
 Configuration > VPN Settings > Should client Internet traffic be routed through the VPN? > No
 
 Add domains one per line in vpn-route-domains.txt
+
 CHMOD +x openvpn-private-routing-update.sh
+
 cp openvpn-private-routing-update.sh to /usr/local/openvpn_as/scripts/
 
 Example cron job:
