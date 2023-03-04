@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#*/90    *       *       *       *       /root/openvpn-private-routing-update.sh
+
 NUM=0
 
 while read DOMAIN; do
@@ -9,7 +11,16 @@ while read DOMAIN; do
 	/usr/local/openvpn_as/scripts/sacli --key "vpn.server.routing.private_network.${NUM}" --value "${IPADDRESS}/32" ConfigPut
 	NUM=`expr $NUM + 1`
 
-done < /usr/local/openvpn_as/scripts/vpn-route-domains.txt
+done < /root/vpn-route-domains.txt
+
+while read IPSUBNET; do
+	
+	echo "$NUM $IPSUBNET"
+	/usr/local/openvpn_as/scripts/sacli --key "vpn.server.routing.private_network.${NUM}" --value "${IPSUBNET}" ConfigPut
+	NUM=`expr $NUM + 1`
+
+done < /root/vpn-route-subnets.txt
+
 
 /usr/local/openvpn_as/scripts/sacli start
 /usr/local/openvpn_as/scripts/sacli ConfigQuery
