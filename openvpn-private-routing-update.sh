@@ -1,6 +1,7 @@
 #!/bin/sh
 
-#*/90    *       *       *       *       /root/openvpn-private-routing-update.sh
+# Example crontab update every 90 minutes
+#*/90    *       *       *       *       /usr/local/openvpn_as/scripts/openvpn-private-routing-update.sh
 
 NUM=0
 
@@ -11,7 +12,7 @@ while read DOMAIN; do
 	/usr/local/openvpn_as/scripts/sacli --key "vpn.server.routing.private_network.${NUM}" --value "${IPADDRESS}/32" ConfigPut
 	NUM=`expr $NUM + 1`
 
-done < /root/vpn-route-domains.txt
+done < /usr/local/openvpn_as/scripts/vpn-route-domains.txt
 
 while read IPSUBNET; do
 	
@@ -19,7 +20,7 @@ while read IPSUBNET; do
 	/usr/local/openvpn_as/scripts/sacli --key "vpn.server.routing.private_network.${NUM}" --value "${IPSUBNET}" ConfigPut
 	NUM=`expr $NUM + 1`
 
-done < /root/vpn-route-subnets.txt
+done < /usr/local/openvpn_as/scripts/vpn-route-subnets.txt
 
 
 /usr/local/openvpn_as/scripts/sacli start
