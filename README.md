@@ -16,6 +16,8 @@ Configuration > VPN Settings > Should client Internet traffic be routed through 
 
 Add domains one per line in vpn-route-domains.txt
 
+Add subnets to vpn-route-subnets.txt
+
 CHMOD +x openvpn-private-routing-update.sh
 
 cp openvpn-private-routing-update.sh to /usr/local/openvpn_as/scripts/
